@@ -1,8 +1,11 @@
 import React from 'react';
+import MainLayout from '../../Layout/MainLayout';
 
 const Index = () => {
     return (
-        <h1 className="bg-red text-black text-xl p-4">This is a test component</h1>
+        <MainLayout>
+            <h1>Welcome to the Home Page</h1>
+        </MainLayout>
     );
 };
 

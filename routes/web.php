@@ -4,5 +4,5 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return Inertia::render('Test');
+    return Inertia::render('Module/User/Index');
 });
