@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 
 function Header() {
@@ -19,7 +18,7 @@ function Header() {
     <header>
         <div className="header">
           <div className="logo">
-    
+
           </div>
           <div onClick={() => setMobileNav(!mobileNav)} className="mobile-nav">
             <FaBars />

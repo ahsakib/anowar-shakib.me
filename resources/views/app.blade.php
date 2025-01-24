@@ -8,7 +8,8 @@
         @vite([
                 'resources/css/app.css',
                 'resources/js/app.jsx',
-                'resources/css/header.css'
+                'resources/css/header.css',
+                'resources/css/MainLayout.css'
             ])
         <!-- As you can see, we will use vite with jsx syntax for React-->
         @inertiaHead
