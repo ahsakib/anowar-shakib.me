@@ -1,13 +1,17 @@
 import React from 'react';
 import MainLayout from '../../Layout/MainLayout';
 import Dashboard from '../../Layout/Dashboard';
+import RootLayout from '../../Layout/RootLayout';
 
 const Index = () => {
     return (
         <div>
-            <MainLayout>
+            {/* <MainLayout>
                 <Dashboard/>
-            </MainLayout>
+            </MainLayout> */}
+        <RootLayout>
+            <Dashboard/>
+        </RootLayout>
         </div>
     );
 };
