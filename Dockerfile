@@ -1,7 +1,6 @@
-# Use official PHP with Apache
 FROM php:8.2-apache
 
-# Install dependencies
+# Install necessary PHP extensions and tools
 RUN apt-get update && apt-get install -y \
     git zip unzip curl libzip-dev libpng-dev libonig-dev libxml2-dev npm \
     && docker-php-ext-install pdo pdo_mysql zip gd
@@ -9,23 +8,27 @@ RUN apt-get update && apt-get install -y \
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-# Set working directory
+# Set working directory to Laravel root
 WORKDIR /var/www/html
 
-# Copy everything
+# Copy all files
 COPY . .
 
-# Install Composer
+# Set document root to /public directory
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+
+# Update Apache config for the document root
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
+
+# Copy composer from composer image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install Laravel dependencies
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader
-
-# Install Node dependencies and build frontend
 RUN npm install && npm run build
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Expose port 80
+# Expose port
 EXPOSE 80
