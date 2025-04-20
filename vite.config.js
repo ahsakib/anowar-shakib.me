@@ -3,8 +3,9 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
+    base: '/', // <-- This ensures correct asset URLs
     plugins: [
-        react(), // React plugin that we installed for vite.js
+        react(),
         laravel({
             input: [
                 'resources/css/app.css',
@@ -15,3 +16,4 @@ export default defineConfig({
         }),
     ],
 });
+
